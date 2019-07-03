@@ -122,27 +122,27 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Patient Name</label>
-                                    @Html.DisplayFor(model => item.P_Details)
+                                    @Html.DisplayFor(model => item.PatientDetails)
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Appointment Time</label>
-                                    @Html.DisplayFor(model => item.App_Time)
+                                    @Html.DisplayFor(model => item.AppTime)
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Appointment Date</label>
-                                    @Html.DisplayFor(model => item.App_Date)
+                                    @Html.DisplayFor(model => item.AppDate)
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <span class="custom-badge status-red">@Html.DisplayFor(model => item.App_Status)</span>
+                                    <span class="custom-badge status-red">@Html.DisplayFor(model => item.AppStatus)</span>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
     </div>
     <div class="m-t-20 text-center">
 
-        @Html.ActionLink("Confirm booking", "ConfirmForUser", new { id = item.App_Id })
+        @Html.ActionLink("Confirm booking", "ConfirmForUser", new { id = item.AppId })
     </div>
 
 

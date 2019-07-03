@@ -23,7 +23,7 @@ namespace DefyClinicInfastructure
 
     public Booking FindById(int id)
     {
-      var result = _db.Bookings.SingleOrDefault(x => x.App_Id == id);
+      var result = _db.Bookings.SingleOrDefault(x => x.AppId == id);
       return result;
       // throw new NotImplementedException();
     }

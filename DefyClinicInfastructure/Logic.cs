@@ -10,7 +10,7 @@ namespace DefyClinicInfastructure
     {
       //int count = 0;
 
-      var app = db.Bookings.ToList().FindAll(x => x.P_Details.Equals(email));
+      var app = db.Bookings.ToList().FindAll(x => x.PatientDetails.Equals(email));
       return app.Count;
     }
 
