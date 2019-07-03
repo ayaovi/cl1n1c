@@ -1,48 +1,45 @@
 ﻿using DefyClinicModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DefyClinicInfastructure
 {
-   public class DepartmentRepository
+  public class DepartmentRepository
+  {
+    readonly DefyClinicContxet _db = new DefyClinicContxet();
+    public void Add(Department department)
     {
-        DefyClinicContxet db = new DefyClinicContxet();
-        public void Add(Department P)
-        {
-            db.Departments.Add(P);
-            db.SaveChanges();
-            //  throw new NotImplementedException();
-        }
-
-        public void Edit(Department P)
-        {
-            db.Entry(P).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
-
-        public Department FindById(string Id)
-        {
-            var result = (from x in db.Departments where x.D_ID == Id select x).SingleOrDefault();
-            return result;
-            // throw new NotImplementedException();
-        }
-
-        public IEnumerable<Department> GetDepartments()
-        {
-            return db.Departments;
-            // throw new NotImplementedException();
-        }
-
-        public void Remove(string Id)
-        {
-            Department P = db.Departments.Find(Id);
-            db.Departments.Remove(P);
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
+      _db.Departments.Add(department);
+      _db.SaveChanges();
+      //  throw new NotImplementedException();
     }
+
+    public void Edit(Department P)
+    {
+      _db.Entry(P).State = System.Data.Entity.EntityState.Modified;
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+
+    public Department FindById(string id)
+    {
+      var result = _db.Departments.SingleOrDefault(x => x.D_ID == id);
+      return result;
+      // throw new NotImplementedException();
+    }
+
+    public IEnumerable<Department> GetDepartments()
+    {
+      return _db.Departments;
+      // throw new NotImplementedException();
+    }
+
+    public void Remove(string id)
+    {
+      var department = _db.Departments.Find(id);
+      _db.Departments.Remove(department);
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+  }
 }

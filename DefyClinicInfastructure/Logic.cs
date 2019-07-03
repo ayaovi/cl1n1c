@@ -1,34 +1,22 @@
-﻿using DefyClinicModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DefyClinicInfastructure
 {
-   public class Logic
+  public class Logic
+  {
+    readonly DefyClinicContxet db = new DefyClinicContxet();
+
+    public int CountBookings(string email)
     {
-        DefyClinicContxet db = new DefyClinicContxet();
+      //int count = 0;
 
-        public int countBookings(string email)
-        {
-            //int count = 0;
-
-            List<Booking> app = db.Bookings.ToList().FindAll(x => x.P_Details.Equals(email));
-            return app.Count;
-        }
-
-        public bool isFree(string email)
-        {
-            bool free = false;
-
-            if (countBookings(email) >= 4)
-            {
-                free = true;
-            }
-
-            return free;
-        }
+      var app = db.Bookings.ToList().FindAll(x => x.P_Details.Equals(email));
+      return app.Count;
     }
+
+    public bool IsFree(string email)
+    {
+      return CountBookings(email) >= 4;
+    }
+  }
 }

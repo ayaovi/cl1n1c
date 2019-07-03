@@ -1,48 +1,45 @@
 ﻿using DefyClinicModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DefyClinicInfastructure
 {
-   public class BranchRepository
+  public class BranchRepository
+  {
+    readonly DefyClinicContxet _db = new DefyClinicContxet();
+    public void Add(Branch patient)
     {
-        DefyClinicContxet db = new DefyClinicContxet();
-        public void Add(Branch P)
-        {
-            db.Branchs.Add(P);
-            db.SaveChanges();
-            //  throw new NotImplementedException();
-        }
-
-        public void Edit(Branch P)
-        {
-            db.Entry(P).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
-
-        public Branch FindById(string Id)
-        {
-            var result = (from x in db.Branchs where x.BranchCode == Id select x).SingleOrDefault();
-            return result;
-            // throw new NotImplementedException();
-        }
-
-        public IEnumerable<Branch> GetBranches()
-        {
-            return db.Branchs;
-            // throw new NotImplementedException();
-        }
-
-        public void Remove(string Id)
-        {
-            Branch P = db.Branchs.Find(Id);
-            db.Branchs.Remove(P);
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
+      _db.Branchs.Add(patient);
+      _db.SaveChanges();
+      //  throw new NotImplementedException();
     }
+
+    public void Edit(Branch patient)
+    {
+      _db.Entry(patient).State = System.Data.Entity.EntityState.Modified;
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+
+    public Branch FindById(string id)
+    {
+      var result = _db.Branchs.SingleOrDefault(x => x.BranchCode == id);
+      return result;
+      // throw new NotImplementedException();
+    }
+
+    public IEnumerable<Branch> GetBranches()
+    {
+      return _db.Branchs;
+      // throw new NotImplementedException();
+    }
+
+    public void Remove(string id)
+    {
+      var patient = _db.Branchs.Find(id);
+      _db.Branchs.Remove(patient);
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+  }
 }

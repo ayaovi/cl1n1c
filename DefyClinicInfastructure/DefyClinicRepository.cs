@@ -1,49 +1,45 @@
-﻿using DefyClinicCore.App;
-using DefyClinicModels;
-using System;
+﻿using DefyClinicModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DefyClinicInfastructure
 {
-   public class DefyClinicRepository
+  public class DefyClinicRepository
+  {
+    readonly DefyClinicContxet _db = new DefyClinicContxet();
+    public void Add(PreSlot slot)
     {
-        DefyClinicContxet db = new DefyClinicContxet();
-        public void Add(PreSlot P)
-        {
-            db.Slots.Add(P);
-            db.SaveChanges();
-            //  throw new NotImplementedException();
-        }
-
-        public void Edit(PreSlot P)
-        {
-            db.Entry(P).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
-
-        public PreSlot FindById(int Id)
-        {
-            var result = (from x in db.Slots where x.Id == Id select x).SingleOrDefault();
-            return result;
-            // throw new NotImplementedException();
-        }
-
-        public IEnumerable<PreSlot> GetSlots()
-        {
-            return db.Slots;
-            // throw new NotImplementedException();
-        }
-
-        public void Remove(int Id)
-        {
-            PreSlot P = db.Slots.Find(Id);
-            db.Slots.Remove(P);
-            db.SaveChanges();
-            //throw new NotImplementedException();
-        }
+      _db.Slots.Add(slot);
+      _db.SaveChanges();
+      //  throw new NotImplementedException();
     }
+
+    public void Edit(PreSlot P)
+    {
+      _db.Entry(P).State = System.Data.Entity.EntityState.Modified;
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+
+    public PreSlot FindById(int id)
+    {
+      var result = _db.Slots.SingleOrDefault(x => x.Id == id);
+      return result;
+      // throw new NotImplementedException();
+    }
+
+    public IEnumerable<PreSlot> GetSlots()
+    {
+      return _db.Slots;
+      // throw new NotImplementedException();
+    }
+
+    public void Remove(int id)
+    {
+      var slot = _db.Slots.Find(id);
+      _db.Slots.Remove(slot);
+      _db.SaveChanges();
+      //throw new NotImplementedException();
+    }
+  }
 }
