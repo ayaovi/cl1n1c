@@ -1,0 +1,240 @@
+﻿@model DefyClinicModels.Booking
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@*<h2>Create</h2>*@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+<link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/assets/css/select2.min.css">
+<link rel="stylesheet" href="~/assets/css/style.css">
+<div class="main-wrapper">
+    <div class="header">
+        <div class="header-left">
+            <a href="index-2.html" class="logo">
+                <img src="~/assets/img/logo.png" width="35" height="35" alt=""> <span>DEFY Clinic</span>
+            </a>
+        </div>
+        <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+        <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+        <ul class="nav user-menu float-right">
+            <li class="nav-item dropdown d-none d-sm-block">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
+                @* <div class="dropdown-menu notifications">
+                            <div class="topnav-dropdown-header">
+                                <span>Notifications</span>
+                            </div>
+                            <div class="drop-scroll">
+                                <ul class="notification-list">
+                                    <li class="notification-message">
+                                        <a href="activities.html">
+                                            <div class="media">
+                                                <span class="avatar">
+                                                    <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+                                                </span>
+                                                <div class="media-body">
+                                                    <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+                                                    <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification-message">
+                                        <a href="activities.html">
+                                            <div class="media">
+                                                <span class="avatar">V</span>
+                                                <div class="media-body">
+                                                    <p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+                                                    <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification-message">
+                                        <a href="activities.html">
+                                            <div class="media">
+                                                <span class="avatar">L</span>
+                                                <div class="media-body">
+                                                    <p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
+                                                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification-message">
+                                        <a href="activities.html">
+                                            <div class="media">
+                                                <span class="avatar">G</span>
+                                                <div class="media-body">
+                                                    <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+                                                    <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification-message">
+                                        <a href="activities.html">
+                                            <div class="media">
+                                                <span class="avatar">V</span>
+                                                <div class="media-body">
+                                                    <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
+                                                    <p class="noti-time"><span class="notification-time">2 days ago</span></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="topnav-dropdown-footer">
+                                <a href="activities.html">View all Notifications</a>
+                            </div>
+                        </div>
+                    </li>*@
+            <li class="nav-item dropdown d-none d-sm-block">
+                <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
+            </li>
+            <li>
+                @Html.Partial("_LoginPartial")
+            </li>
+        </ul>
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Appointment</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        <input class="form-control" type="text" value="@ViewBag.Dep" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Patient Name</label>
+                                        <input class="form-control" type="text" value="@ViewBag.P_Name" readonly="">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Employee No</label>
+                                        <input class="form-control" type="text" value="@ViewBag.P_No" readonly="">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ID/Passport</label>
+                                        <input class="form-control" type="text" value="@ViewBag.P_ID" readonly="">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        @*@using (Html.BeginForm("Create", "Bookings", FormMethod.Post, new { id = Model.App_Date }))
+                                            {*@
+                                        <div class="cal-icon">
+                                            @Html.DropDownList("App_Date", ViewData["App_Date"] as List<SelectListItem>, "--Select Pattern--", new { onchange = "this.form.submit(); " })
+                                            @*@Html.DropDownList("App_Date", null, htmlAttributes: new { @style = "width:100px" })*@
+                                            @*@Html.EditorFor(model => model.App_Date, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.App_Date, "", new { @class = "text-danger" })
+                                        </div>
+                                        @*}*@
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <div class="time-icon">
+                                            @Html.DropDownList("App_Time", null, htmlAttributes: new { @id = "#ddlFruits", @style = "width:100px" })
+                                            @*@Html.EditorFor(model => model.App_Time, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.App_Time, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Reason(s) for Appointment</label>
+                                        @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Patient Phone Number</label>
+                                        <input class="form-control" type="text" value="@ViewBag.P_Mobiel" readonly="">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                            @*<div class="form-group">
+                                <label class="display-block">Appointment Status</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" id="product_active" value="option1" checked>
+                                    <label class="form-check-label" for="product_active">
+                                        Active
+                                    </label>
+                                </div>*@
+                            @*<div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="product_inactive" value="option2">
+                                        <label class="form-check-label" for="product_inactive">
+                                            Inactive
+                                        </label>
+                                    </div>
+                                </div>*@
+                            <div class="m-t-20 text-center">
+
+                                <input type="submit" id="btnDelete" value="Create Appointment" class="btn btn-primary submit-btn" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <script>
+  $("#App_Date").on("Create", function () {
+    $("form").submit();
+        });
+        $(function () {
+            $("#btnDelete").bind("click", function () {
+                $("#ddlFruits option:selected").remove();
+            });
+        });
+    </script>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

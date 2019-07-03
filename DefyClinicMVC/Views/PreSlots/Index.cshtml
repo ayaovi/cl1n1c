@@ -1,0 +1,317 @@
+﻿@model IEnumerable<DefyClinicModels.PreSlot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<h2>Index</h2>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+<link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/assets/css/select2.min.css">
+<link rel="stylesheet" href="~/assets/css/style.css">
+<div class="header">
+    <div class="header-left">
+        <a href="index-2.html" class="logo">
+            <img src="~/assets/img/logo.png" width="35" height="35" alt=""> <span>DEFY Clinic</span>
+        </a>
+    </div>
+    <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+    <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+    <ul class="nav user-menu float-right">
+        <li class="nav-item dropdown d-none d-sm-block">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
+            @* <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span>Notifications</span>
+                        </div>
+                        <div class="drop-scroll">
+                            <ul class="notification-list">
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+                                            <span class="avatar">
+                                                <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+                                            </span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+                                                <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+                                            <span class="avatar">V</span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+                                                <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+                                            <span class="avatar">L</span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
+                                                <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+                                            <span class="avatar">G</span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+                                                <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+                                            <span class="avatar">V</span>
+                                            <div class="media-body">
+                                                <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
+                                                <p class="noti-time"><span class="notification-time">2 days ago</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="activities.html">View all Notifications</a>
+                        </div>
+                    </div>
+                </li>*@
+        <li class="nav-item dropdown d-none d-sm-block">
+            <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
+        </li>
+        <li>
+            @Html.Partial("_LoginPartial")
+        </li>
+    </ul>
+
+</div>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Appointments</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+                <a href="@Url.Action("Create")" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i>Add Slots </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table">
+                        <thead>
+
+                            <tr>
+                                <th>Avaiable Time</th>
+
+                                @*<th>Doctor Name</th>
+                                    <th>Department</th>*@
+
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.A_Slot)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => item.Date)
+                                </td>
+                                
+                                <td>
+                                    <label class="switch">
+
+                                        <input type="checkbox" @Html.DisplayFor(modelItem => item.Status, new { @class = "post-checkbox", data_id = item.Id })>
+
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td style="text-align: center;"><div id="demo"></div> @Html.CheckBoxFor(modelItem => item.Status, new { @class = "post-checkbox", data_id = item.Id })</td>
+                                <td class="post-text">@Html.DisplayFor(modelItem => item.PublicPostDisplayText)</td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="@Url.Action("Edit",  new { id = item.Id})"><i class="fa fa-pencil m-r-5"></i>Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appointment"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td></td>
+
+                            </tr>
+
+
+                        }
+                    </table>
+                    <div id="delete_appointment" class="modal fade delete-modal" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <img src="~/assets/img/sent.png" alt="" width="50" height="46">
+                                    <h3>Are you sure want to delete this Slot?</h3>
+                                    <div class="m-t-20">
+                                        <a href="@Url.Action("Index")" class="btn btn-white" data-dismiss="modal">Close</a>
+                                        <button type="submit" class="btn btn-danger", new { id= item.Id}>Delete</button>
+                                        @*@Url.Action("Delete", new { id = item.App_Id })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar-overlay" data-reff=""></div>
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.slimscroll.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+    //Date
+    $(document).ready(function () {
+        $('#datepicker').val(moment().format('DD/MM/YYYY'));
+        $('#datepicker').datepicker();
+        $('.next-day').click(function () {
+            var date = $('#datepicker').datepicker('getDate');
+            date.setDate(date.getDate() + 1)
+            $('#datepicker').datepicker('setDate', date);
+        });
+        $('.prev-day').click(function () {
+            var date = $('#datepicker').datepicker('getDate');
+            date.setDate(date.getDate() - 1)
+            $('#datepicker').datepicker('setDate', date);
+        });
+        $('.today-date').click(function () {
+            var date = moment().format('DD/MM/YYYY');
+            $('#datepicker').datepicker('setDate', date);
+        });
+    });
+    //Toggle Stwitch
+    var url = '@Url.Action("Index")';
+    $('.post-checkbox').click(function () {
+        var isChecked = $(this).is(':checked');
+        var id = $(this).data('id');
+        var row = $(this).closest('tr');
+        $.post(url, { id: id, isPublicPost: isChecked }, function (response) {
+            if (response) {
+                var displayText = isChecked ? 'Yes' : 'No';
+                location.reload();
+                row.find('.post-text').text(displayText);
+            } else {
+
+            }
+        }).fail(function () {
+
+        });
+    });
+    //Get Date list
+    $("#App_Date").on("Index", function () {
+        $("form").submit();
+    });
+    $(function () {
+        $("#btnDelete").bind("click", function () {
+            $("#ddlFruits option:selected").remove();
+        });
+    });
+
+</script>
